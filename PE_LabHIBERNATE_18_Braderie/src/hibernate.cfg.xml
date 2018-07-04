@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:afpa</property>
+		<property name="hibernate.connection.username">lab</property>
+		<property name="connection.password">lab123</property>
+		
+		 <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        
+        <!-- Supprimer et re-créée le schéma de base de données au démarrage -->
+        <property name="hbm2ddl.auto">create</property>
+		
+		<!-- Montrer toutes les requêtes générées -->
+        <property name="show_sql">true</property>
+        
+        <!-- Formater toutes les requêtes générées -->
+        <property name="format_sql">true</property>
+
+         <!-- Autoriser la production de statistiques -->
+        <property name="hibernate.generate_statistics">true</property>
+		
+		<mapping class="modele.beans.Article"></mapping>
+		<mapping class="modele.beans.User"></mapping>
+		<mapping class="modele.beans.Caddie"></mapping>
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence>
+	<persistence-unit name="OracleDS" transaction-type="RESOURCE_LOCAL">
+		<non-jta-data-source>jdbc/braderie</non-jta-data-source>
+		<class>modele.beans.User</class>
+		<class>modele.beans.Article</class>
+		<class>modele.beans.Caddie</class>
+	</persistence-unit>
+</persistence>

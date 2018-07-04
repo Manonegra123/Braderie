@@ -1,0 +1,109 @@
+/*******************************************************************************
+ * @author Manonegra
+ * Date de creation : 7 juin 2018
+ * A : 12:03:09
+ *
+ * PE_LabJSP_12_Braderie
+ ******************************************************************************/
+/**
+ *
+ */
+package controllers.commands.authentification;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import controllers.commands.interfaces.ICommand;
+import modele.beans.Caddie;
+import modele.services.exceptions.ServiceException;
+import modele.services.factory.ServiceFactory;
+import modele.services.impl.ArticleService;
+import modele.services.impl.CaddieService;
+import modele.services.impl.UserService;
+/**
+ * Classe appelée par la front_controller par la balise action=login
+ * @author Manonegra
+ *
+ */
+public class LoginCommand implements ICommand {
+
+	// Logger
+	private static final Log log = LogFactory.getLog(LoginCommand.class);
+
+	// Declaration des services
+	private UserService userService = (UserService) ServiceFactory.newService(UserService.class);
+	private ArticleService articleService = (ArticleService) ServiceFactory.newService(ArticleService.class);
+	private CaddieService caddieService = (CaddieService) ServiceFactory.newService(CaddieService.class);
+
+	@Override
+	public void execute(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
+
+		// Stockage des parametres de la requete dans des chaines
+		String login = request.getParameter("login");
+		String pwd = request.getParameter("pwd");
+
+		// Déclaration des id
+		int idUser;
+		int idArticle;
+		int numArticle = 1;
+
+		// Creation d'un caddie au log d'un nouvel utilisateur
+		Caddie hcaddie = caddieService.createCaddie();
+
+		try {
+			// Récuperation des 2 chaines contenant le login et mot de passe
+			// et passage en parametres de la méthode find de la classe UserService
+			idUser = userService.find(login, pwd);
+
+			// On positonne la variable idArticle sur le premier ID d'article trouvé dans la base de données
+			idArticle = articleService.findFirstID().getId();
+
+			// Et on la passe en parametre dans la methode findById
+			articleService.findById(idArticle);
+		} catch (ServiceException e) {
+			log.error(e);
+			log.info(e);
+			throw new ServletException(e);
+		}
+
+		hcaddie.setId(idUser);
+		// Declaration d'un objet httpSession par la requete
+		HttpSession session = request.getSession();
+
+		/* On positionne 3 attributs pour la session
+		 * id de l'user qui s'est connecté
+		 * id du premier article trouvé
+		 * caddie crée précédemment
+		 **/
+		session.setAttribute("numArticle", numArticle);
+		session.setAttribute("idUser",idUser);
+		session.setAttribute("idArticle", idArticle);
+		session.setAttribute("caddie", hcaddie);
+
+		// Consolidation en cas d'identifiants non valides,
+		// on renvoie directement à la page d'accueil
+		if(idUser != -1) {
+			if(request.isRequestedSessionIdFromCookie()) {
+				// forward vers la commande current du front_controller
+				request.getRequestDispatcher("/FC?action=current").forward(request, response);
+			}
+			else
+				response.encodeURL("/FC?action=current");
+		}
+		else {
+			request.setAttribute("errorMessage", "User or password incorrect!");
+			if(request.isRequestedSessionIdFromCookie())
+				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			else
+				response.encodeURL("/WEB-INF/index.jsp");
+		}
+
+	}
+}

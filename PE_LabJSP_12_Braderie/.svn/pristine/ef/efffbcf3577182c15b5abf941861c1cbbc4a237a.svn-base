@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   
+     @author Manonegra
+     Date de creation : 2018
+   
+ -->
+
+<!--
+   
+     @author Manonegra
+     Date de creation : 2018
+   
+ -->
+
+<!--
+   
+     @author {owner} {name}
+     Date de creation : 2018
+   
+ -->
+
+<!--
+   
+     @author ${owner}
+     Date de creation : 2018
+   
+ -->
+
+<!--
+   
+     @author Manonegra
+     Date de creation : 2018
+   
+ -->
+
+<!--
+    /*******************************************************************************
+     * @author ${user}
+     * Date de creation : 2018
+     * A : ${time}
+     * 
+     * ${project_name}
+     ******************************************************************************/
+ -->
+
+<faceted-project>
+  <runtime name="Apache Tomcat v8.5"/>
+  <fixed facet="java"/>
+  <fixed facet="wst.jsdt.web"/>
+  <fixed facet="jst.web"/>
+  <installed facet="java" version="1.8"/>
+  <installed facet="jst.web" version="3.1"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+</faceted-project>

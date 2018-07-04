@@ -1,0 +1,79 @@
+###############################################################################
+#
+#  @author Manonegra
+#  Date de creation : 2018
+#
+###############################################################################
+###############################################################################
+#
+#  @author Manonegra
+#  Date de creation : 2018
+#
+###############################################################################
+###############################################################################
+#
+#  @author {owner} {name}
+#  Date de creation : 2018
+#
+###############################################################################
+###############################################################################
+#
+#  @author ${owner}
+#  Date de creation : 2018
+#
+###############################################################################
+###############################################################################
+#
+#  @author Manonegra
+#  Date de creation : 2018
+#
+###############################################################################
+###############################################################################
+# /*******************************************************************************
+#  * @author ${user}
+#  * Date de creation : 2018
+#  * A : ${time}
+#  * 
+#  * ${project_name}
+#  ******************************************************************************/
+###############################################################################
+# Direct log messages to a log file 
+# Journalise dans un fichier, celui-ci est renommé lorsqu'il atteint 
+# une certaine taille et la journalisation reprend dans un nouveau fichier
+log4j.appender.file=org.apache.log4j.RollingFileAppender 
+log4j.appender.file.File=${catalina.home}/logs/logfile.log
+log4j.appender.file.MaxFileSize=100KB 
+log4j.appender.file.MaxBackupIndex=5
+log4j.appender.file.append=true
+# Le format du message est spécifié par un motif (pattern) 
+# composé de texte et de séquences d'échappement indiquant les informations à afficher. 
+# Par défaut, les événements sont journalisés au format Message[Retour à la ligne] 
+log4j.appender.file.layout=org.apache.log4j.PatternLayout 
+log4j.appender.file.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}\:%L - %m%n   
+
+# Direct log messages to a log file
+log4j.appender.file1=org.apache.log4j.FileAppender 
+log4j.appender.file1.File=${catalina.home}/logs/logfileFileAppender.log 
+# Le format du message est spécifié par un motif (pattern) 
+# composé de texte et de séquences d'échappement indiquant les informations à afficher. 
+# Par défaut, les événements sont journalisés au format Message[Retour à la ligne] 
+log4j.appender.file1.layout=org.apache.log4j.PatternLayout 
+log4j.appender.file1.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}\:%L - %m%n 
+
+# Direct log messages to stdout 
+# Effectue la journalisation vers la console 
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender 
+log4j.appender.stdout.Target=System.out 
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout 
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}\:%L - %m%n   
+
+# Root logger option 
+# Niveaux de journalisation :
+# FATAL : utilisé pour journaliser une erreur grave pouvant mener à l'arrêt prématuré de l'application ;
+# ERROR : utilisé pour journaliser une erreur qui n'empêche cependant pas l'application de fonctionner ;
+# WARN : utilisé pour journaliser un avertissement, il peut s'agir par exemple d'une incohérence dans la configuration, l'application peut continuer à fonctionner mais pas forcément de la façon attendue ;
+# INFO : utilisé pour journaliser des messages à caractère informatif (nom des fichiers, etc.) ;
+# DEBUG : utilisé pour générer des messages pouvant être utiles au débogage.
+
+#log4j.rootLogger=DEBUG,file, stdout
+log4j.rootLogger=INFO, file, file1, stdout

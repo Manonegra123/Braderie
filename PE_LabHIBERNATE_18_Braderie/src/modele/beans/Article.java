@@ -1,0 +1,122 @@
+/*******************************************************************************
+ * @author Manonegra
+ * Date de creation : 14 juin 2018
+ * A : 09:50:54
+ *
+ * PE_LabSTRUTS_15_Braderie
+ ******************************************************************************/
+
+/**
+ * Classe métier article
+ * @author Manonegra
+ */
+package modele.beans;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="T_ARTICLE")
+public class Article {
+
+	//Attributs de la classe
+	@Id
+	@Column(name="IDARTICLE")
+	private int id;
+
+	@Column(name="DESCRIPTION")
+	private String description;
+
+	@Column(name="MARQUE")
+	private String marque;
+
+	@Column(name="PRIXUNITAIRE")
+	private int prixunitaire;
+
+	//Constructeurs
+	public Article() {}
+
+	/**
+	 * @param id
+	 * @param description
+	 * @param marque
+	 * @param prixunitaire
+	 */
+	public Article(int id, String description, String marque, int prixunitaire) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.marque = marque;
+		this.prixunitaire = prixunitaire;
+	}
+
+	//Getters et setters
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the marque
+	 */
+	public String getMarque() {
+		return marque;
+	}
+
+	/**
+	 * @param marque the marque to set
+	 */
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+
+	/**
+	 * @return the prixunitaire
+	 */
+	public int getPrixunitaire() {
+		return prixunitaire;
+	}
+
+	/**
+	 * @param prixunitaire the prixunitaire to set
+	 */
+	public void setPrixunitaire(int prixunitaire) {
+		this.prixunitaire = prixunitaire;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Art "+id+"/"+description+"/"+marque+"/"+prixunitaire+"€ ";
+	}
+
+}

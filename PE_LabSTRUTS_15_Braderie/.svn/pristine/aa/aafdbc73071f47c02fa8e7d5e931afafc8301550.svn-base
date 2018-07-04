@@ -1,0 +1,37 @@
+label.username= Identifiant
+label.password= Mot de passe
+label.login= Se connecter
+label.languefr= Français
+label.langueen= Anglais
+label.logout= Se déconnecter
+label.relogin= Se reconnecter
+label.back= Retour sélection
+label.reset= Réinitialiser
+
+error.login= Identifiant ou mot de passe incorrects. Essayez de nouveau.
+error.champ= Vous devez saisir un identifiant et un mot de passe.
+error.handler= Un problème est survenu, veuillez vous reconnecter.
+error.logout= Vous êtes déconnecté.
+
+Welcome.message= Bienvenue sur la grande braderie
+
+article.next= Suivant
+article.prev= Précédent
+article.del= Supprimer
+article.id= Identifiant
+article.num= N°
+article.describe= Description
+article.marque= Marque
+article.price= Prix
+article.qtite= Quantité
+article.actions= Actions
+article.add= Ajouter au panier
+
+caddie.save= Sauvegarder panier
+caddie.restore= Restaurer panier
+caddie.empty= Vider panier
+caddie.display= Afficher panier
+caddie.title= Contenu de votre panier
+caddie.vide= Votre panier est vide
+caddie.restored= Votre panier a été restauré
+caddie.saved= Votre panier a été sauvegardé

@@ -1,0 +1,122 @@
+/*******************************************************************************
+ * @author Manonegra
+ * Date de creation : 7 juin 2018
+ * A : 12:03:09
+ *
+ * PE_LabJSP_12_Braderie
+ ******************************************************************************/
+/**
+ *
+ */
+package modele.services.impl;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import modele.beans.Caddie;
+import modele.dao.exceptions.DAOException;
+import modele.dao.interfaces.IDao;
+import modele.services.exceptions.ServiceException;
+import modele.services.factory.ServiceFactory;
+
+/**
+ * Classe de Service du bean Caddie héritant de la classe Service
+ * Elle définis toutes les méthodes de cette classe
+ * Ces méthodes font appel a la couche DAO
+ * @author Manonegra
+ *
+ */
+public class CaddieService extends Service<Caddie>{
+
+	// Logger
+	static final private Log log = LogFactory.getLog(CaddieService.class);
+
+	// Créer un DAO Article à partir de la factory
+	IDao<Caddie> caddieDao = myFactory.getCaddieDAO();
+	private Caddie caddie = null;
+	private HashMap<Integer, Integer> hMapCaddie = null;
+
+	// Constructeurs
+	public CaddieService() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public CaddieService(Class<ServiceFactory> callerClass, String name) {
+		this.name = name;
+	}
+
+	// Methode de creation d'un caddie
+	public Caddie createCaddie() {
+		return new Caddie();
+	}
+
+	/**
+	 * Methode findByID qui demande à la DAO l'existance d'un caddie
+	 * pour un id passe en parametre
+	 *
+	 * @return Caddie
+	 */
+	public Caddie findByID(int idCaddie)  throws DAOException {
+
+		log.info("----------------------------------------------------------");
+		log.info("findByID()");
+
+		try {
+			caddie = caddieDao.findByID(idCaddie);
+			log.info("getExistantCaddie = " + caddie.toString());
+		} catch (DAOException e) {
+			log.error("merdouille getExistantCaddie " + e);
+			throw new DAOException("CaddieService : findByID() <DAOException> ");
+		}
+
+		return caddie;
+	}
+
+
+
+	/**
+	 * Methode sauveCaddie qui appel la couche DAO pour sauvegarder le caddie
+	 * passe en parametre
+	 *
+	 * @return boolean
+	 */
+	//---------------------------------------------------------------------------
+	public  Boolean sauveCaddie(Caddie caddie)  throws DAOException {
+
+		Boolean result = false;
+
+		log.info("----------------------------------------------------------");
+		log.info("sauveCaddie()");
+
+		try {
+			result = caddieDao.sauveCaddie(caddie);
+			log.info("sauveCaddie = " + result);
+		} catch (DAOException e) {
+			log.error("merdouille sauveCaddie " + e);
+			throw new DAOException("CaddieService : sauveCaddie() <DAOException> ");
+		}
+		return result;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Caddie findById(int id) throws ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Caddie> findAll() throws ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
